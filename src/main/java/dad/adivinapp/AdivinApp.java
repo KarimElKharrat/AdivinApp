@@ -28,7 +28,7 @@ public class AdivinApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		//TODO quitar numero random de string
-		contextoLabel = new Label("Introduce un número del 1 al 100");
+		contextoLabel = new Label();
 		reiniciar();
 		
 		numeroText = new TextField();
