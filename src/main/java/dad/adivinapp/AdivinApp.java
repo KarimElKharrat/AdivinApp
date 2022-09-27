@@ -113,7 +113,7 @@ public class AdivinApp extends Application {
 	private void reiniciar() {
 		numeroRandom = (int)(Math.random()*100)+1;
 		intentos = 0;
-		contextoLabel.setText("Introduce un número del 1 al 100" + numeroRandom);
+		contextoLabel.setText("Introduce un número del 1 al 100");
 	}
 
 	public static void main(String[] args) {
