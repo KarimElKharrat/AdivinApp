@@ -50,16 +50,17 @@ public class AdivinApp extends Application {
 		try {
 			numero = Integer.parseInt(numeroText.getText());
 			numeroText.setText("");
-			intentos++;
 			
 			if(numero <= 0 || numero > 100) {
 				throw new NumberFormatException();
 			} else if(numero == numeroRandom) {
+				intentos++;
 				ifCorrecto(numero);
 				reiniciar();
-			} else
+			} else {
+				intentos++;
 				ifMayorOMenor(numero);
-			
+			}
 		} catch(NumberFormatException exception) {
 			numeroText.setText("");
 			ifError();
@@ -81,11 +82,7 @@ public class AdivinApp extends Application {
 		comprobacionAlert = new Alert(AlertType.WARNING);
 		comprobacionAlert.setTitle("AdivinApp");
 		comprobacionAlert.setHeaderText("¡Has fallado!");
-		
-		if(numeroRandom > numero)
-			comprobacionAlert.setContentText("El número a adivinar es mayor que " + numero);
-		else
-			comprobacionAlert.setContentText("El número a adivinar es menor que " + numero);
+		comprobacionAlert.setContentText("El número a adivinar es " + (numeroRandom > numero ? "mayor":"menor") + " que " + numero);
 		
 		comprobacionAlert.showAndWait();
 	}
