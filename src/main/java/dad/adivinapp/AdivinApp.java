@@ -9,7 +9,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,8 +17,6 @@ public class AdivinApp extends Application {
 	private Label contextoLabel;
 	private TextField numeroText;
 	private Button comprobarButton;
-	private Button reiniciarButton;
-	private HBox buttonPanel;
 	private VBox root;
 	private Alert comprobacionAlert;
 	private int numeroRandom;
@@ -28,7 +25,7 @@ public class AdivinApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		//TODO quitar numero random de string
-		contextoLabel = new Label();
+		contextoLabel = new Label("Introduce un número del 1 al 100");
 		reiniciar();
 		
 		numeroText = new TextField();
@@ -37,12 +34,7 @@ public class AdivinApp extends Application {
 		comprobarButton.setDefaultButton(true);
 		comprobarButton.setOnAction(this::onComprobarAction);
 		
-		reiniciarButton = new Button("Reiniciar");
-		reiniciarButton.setOnAction(this::reiniciar);
-		
-		buttonPanel = new HBox(5, comprobarButton, reiniciarButton);
-		
-		root = new VBox(5, contextoLabel, numeroText, buttonPanel);
+		root = new VBox(5, contextoLabel, numeroText, comprobarButton);
 		root.setFillWidth(false);
 		root.setAlignment(Pos.CENTER);
 		
@@ -106,14 +98,9 @@ public class AdivinApp extends Application {
 		comprobacionAlert.showAndWait();
 	}
 	
-	private void reiniciar(ActionEvent e) {
-		reiniciar();
-	}
-	
 	private void reiniciar() {
 		numeroRandom = (int)(Math.random()*100)+1;
 		intentos = 0;
-		contextoLabel.setText("Introduce un número del 1 al 100");
 	}
 
 	public static void main(String[] args) {
