@@ -24,7 +24,7 @@ public class AdivinApp extends Application {
 	
 	public void start(Stage primaryStage) throws Exception {
 		//TODO quitar numero random de string
-		contextoLabel = new Label("Introduce un número del 1 al 100");
+		contextoLabel = new Label("Introduce un nÃºmero del 1 al 100");
 		reiniciar();
 		
 		numeroText = new TextField();
@@ -51,13 +51,15 @@ public class AdivinApp extends Application {
 			numero = Integer.parseInt(numeroText.getText());
 			numeroText.setText("");
 			intentos++;
+			
 			if(numero <= 0 || numero > 100) {
 				throw new NumberFormatException();
 			} else if(numero == numeroRandom) {
 				ifCorrecto(numero);
-			} else {
+				reiniciar();
+			} else
 				ifMayorOMenor(numero);
-			}
+			
 		} catch(NumberFormatException exception) {
 			numeroText.setText("");
 			ifError();
@@ -68,23 +70,22 @@ public class AdivinApp extends Application {
 	private void ifCorrecto(int numero) {
 		comprobacionAlert = new Alert(AlertType.INFORMATION);
 		comprobacionAlert.setTitle("AdivinApp");
-		comprobacionAlert.setHeaderText("¡Has ganado!");
-		comprobacionAlert.setContentText("El número era " + numero + ".\nSólo has necesitado " + intentos + " intentos. "
+		comprobacionAlert.setHeaderText("Â¡Has ganado!");
+		comprobacionAlert.setContentText("El nÃºmero era " + numero + ".\nSÃ³lo has necesitado " + intentos + " intentos. "
 				+ "\nVuelve a jugar y hazlo mejor.");
 		
 		comprobacionAlert.showAndWait();
-		reiniciar();
 	}
 	
 	private void ifMayorOMenor(int numero) {
 		comprobacionAlert = new Alert(AlertType.WARNING);
 		comprobacionAlert.setTitle("AdivinApp");
-		comprobacionAlert.setHeaderText("¡Has fallado!");
+		comprobacionAlert.setHeaderText("Â¡Has fallado!");
 		
 		if(numeroRandom > numero)
-			comprobacionAlert.setContentText("El número a adivinar es mayor que " + numero);
+			comprobacionAlert.setContentText("El nÃºmero a adivinar es mayor que " + numero);
 		else
-			comprobacionAlert.setContentText("El número a adivinar es menor que " + numero);
+			comprobacionAlert.setContentText("El nÃºmero a adivinar es menor que " + numero);
 		
 		comprobacionAlert.showAndWait();
 	}
@@ -93,7 +94,7 @@ public class AdivinApp extends Application {
 		comprobacionAlert = new Alert(AlertType.ERROR);
 		comprobacionAlert.setTitle("AdivinApp");
 		comprobacionAlert.setHeaderText("Error");
-		comprobacionAlert.setContentText("El número introducido no es válido");
+		comprobacionAlert.setContentText("El nÃºmero introducido no es vÃ¡lido");
 		
 		comprobacionAlert.showAndWait();
 	}
