@@ -54,7 +54,7 @@ public class AdivinApp extends Application {
 			if(numero <= 0 || numero > 100) {
 				throw new NumberFormatException();
 			} else if(numero == numeroRandom) {
-				ifCorrecto();
+				ifCorrecto(numero);
 			} else {
 				ifMayorOMenor(numero);
 			}
@@ -65,11 +65,11 @@ public class AdivinApp extends Application {
 		numeroText.requestFocus();
 	}
 	
-	private void ifCorrecto() {
+	private void ifCorrecto(int numero) {
 		comprobacionAlert = new Alert(AlertType.INFORMATION);
 		comprobacionAlert.setTitle("AdivinApp");
 		comprobacionAlert.setHeaderText("¡Has ganado!");
-		comprobacionAlert.setContentText("Sólo has necesitado " + intentos + " intentos. "
+		comprobacionAlert.setContentText("El número era " + numero + ".\nSólo has necesitado " + intentos + " intentos. "
 				+ "\nVuelve a jugar y hazlo mejor.");
 		
 		comprobacionAlert.showAndWait();
