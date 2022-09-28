@@ -62,6 +62,7 @@ public class AdivinApp extends Application {
 			numeroText.setText("");
 			ifError();
 		}
+		numeroText.requestFocus();
 	}
 	
 	private void ifCorrecto() {
